@@ -1,0 +1,40 @@
+
+<ion-header>
+    <ion-toolbar>
+        <div class="cont-header">
+            <i class="fas fa-chevron-left" [routerLink]="['/home']"></i>
+            <img class="img-header" src="assets/icon/virtualizarme.png" alt="">
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <div class="cont-devices">
+        <ion-button expand="block" (click)="startScanning()">Buscar</ion-button>
+        <ion-list-header>
+            Dispositivos vinculados 
+          </ion-list-header>
+    
+          <ion-item *ngFor="let device of pairedDevices">
+              {{device.name}}
+          </ion-item>
+    
+          <!--<ion-button expand="block" (click)="disconnect()">Desconectar</ion-button>-->
+    
+          <ion-list-header>      
+            Dispositivos disponibles 
+          </ion-list-header>
+    
+          <ion-item *ngFor='let device of unpairedDevices'>
+              <span (click)="selectDevice(device.id)">
+                  {{device.name || device.address}}
+              </span>
+          </ion-item>
+
+          <ion-spinner name="crescent" *ngIf="gettingDevices"></ion-spinner>
+
+    </div>
+    
+</ion-content>
+
